@@ -1,0 +1,5 @@
+key,type,encoding,value
+storage,namespace,,sys_config
+max_errors,data,u32,25
+core_affinity,data,u32,1
+device_uuid,data,string,ESP32-MOCK-UUID-2026

@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.16)
+set(TEST_COMPONENTS "error_hub" "msg_bus" "hw_locks")
+set(EXTRA_COMPONENT_DIRS "../components")
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(framework_unit_tests)

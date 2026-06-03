@@ -1,0 +1,23 @@
+menu "Multi-App Framework Configuration"
+
+    config APP_FRAMEWORK_MAX_ERRORS
+        int "Maximum error queue depth size"
+        range 5 50
+        default 10
+        help
+            Maksymalna liczba slotow w kolejce FreeRTOS dla modulu Error Hub.
+
+    config APP_FRAMEWORK_CORE_AFFINITY
+        int "Target CPU Core for User Apps (0 or 1)"
+        range 0 1
+        default 1
+        help
+            Rdzen procesora dedykowany dla glownych aplikacji uzytkownika.
+
+    config APP_FRAMEWORK_ENABLE_UI_DISPLAY
+        bool "Compile and enable UI Rendering pipeline"
+        default y
+        help
+            Wlacza lub wylacza kompilacje calego silnika graficznego LVGL.
+
+endmenu

@@ -1,0 +1,38 @@
+# =============================================================================
+# ESP32 Code Coverage & CI/CD Profile Configuration (GCOV Engine)
+# =============================================================================
+
+# 1. Instrumentacja GCOV i Profilowanie Kodu
+CONFIG_APP_COMPILE_FLAGS_GCOV=y
+CONFIG_GCOV_ENABLE=y
+CONFIG_APP_TRACE_ENABLE=y
+
+# 2. Optymalizacja kompilatora pod kątem debugowania i stabilności linii kodu
+# Zamiast -Os (rozmiar) wymuszamy -Og, co ułatwia mapowanie linii kodu w LCOV
+CONFIG_COMPILER_OPTIMIZATION_LEVEL_DEBUG=y
+CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE=y
+
+# 3. Alokacja pamięci dla buforów GCOV (wymagane przy zrzucie danych na UART/NVS)
+CONFIG_ESP32_TRAX_TWOBB=y
+CONFIG_SYSTEM_GCOV_BUF_SIZE=8192
+
+# 4. Wyłączenie Sprzętowych Strażników (Watchdogs) dla Emulacji QEMU
+# Zapobiega restartom układu wywołanym wolniejszym taktowaniem emulatora
+CONFIG_ESP_INT_WDT=n
+CONFIG_ESP_TASK_WDT_EN=n
+CONFIG_BOOTLOADER_WDT_ENABLE=n
+
+# 5. Konfiguracja Jądra FreeRTOS pod Testy i Weryfikację Wątków
+CONFIG_FREERTOS_WATCHPOINT_END_OF_STACK=y
+CONFIG_FREERTOS_ASSERT_ON_UNTESTED_FUNCTION=y
+
+# 6. Diagnostyka Systemowa i Poziom Logów w CI
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+CONFIG_LOG_MAXIMUM_LEVEL_VERBOSE=y
+CONFIG_LOG_COLORS=y
+
+# 7. Redukcja rozmiaru i konfiguracja pamięci Flash dla QEMU
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_PARTITION_TABLE_SINGLE_APP=n
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
